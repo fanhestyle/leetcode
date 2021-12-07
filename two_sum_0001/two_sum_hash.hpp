@@ -6,7 +6,6 @@ class Solution {
  public:
   static vector<int> twoSum(vector<int>& nums, int target) {
     unordered_map<int, int> imap;
-
     int cnt = 0;
     // for (auto& it : nums) imap.insert(pair<int, int>(it, cnt++));
     for (auto& it : nums) imap[it] = cnt++;
