@@ -4,4 +4,4 @@ test_case.bin: test_case.cpp
 .PHONY: clean
 
 clean:
-	@rm -rf *.bin
+	@rm -rf *.bin *.out
