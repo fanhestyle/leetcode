@@ -3,8 +3,8 @@ using namespace std;
 
 //#include "cpn_bf.hpp"
 //#include "cpn_dfs_web.hpp"
-#include "cpn_bfs_web.hpp"
-//#include "cpn_nonrecursive_web.hpp"
+//#include "cpn_bfs_web.hpp"
+#include "cpn_nonrecursive_web.hpp"
 
 /* test-cases:
 
