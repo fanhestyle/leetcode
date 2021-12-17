@@ -6,6 +6,9 @@ local t3 = {value = 3, left_child = t6, right_child = t7}
 local t2 = {value = 2, left_child = t4, right_child = t5}
 local t1 = {value = 1, left_child = t2, right_child = t3}
 
+--[[
+]]
+
 local result = {}
 
 local function pre_impl(t, track)
