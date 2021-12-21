@@ -23,14 +23,16 @@ public:
         if (index >= nums.size())
             return;
 
+        int arr[201] = {0};
         for (int i = index; i < nums.size(); i++)
         {
-            if ((i == index) || (nums[i] > nums[i - 1]))
+            if (arr[nums[i] + 100] == 0)
             {
+                arr[nums[i] + 100] = 1;
                 if ((track.size() == 0) || (track.back() <= nums[i]))
                 {
                     track.push_back(nums[i]);
-                    dfs(result, nums, track, i+1);
+                    dfs(result, nums, track, i + 1);
                     track.pop_back();
                 }
             }

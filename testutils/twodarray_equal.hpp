@@ -4,10 +4,13 @@
 using namespace std;
 
 template<typename T>
-bool isArrayEqual(vector<T>& lhs, vector<T>& rhs)
+bool isArrayEqual(vector<T>& lhs, vector<T>& rhs, bool reorder = false)
 {
-    sort(lhs.begin(), lhs.end());
-    sort(rhs.begin(), rhs.end());
+    if (reorder)
+    {
+        sort(lhs.begin(), lhs.end());
+        sort(rhs.begin(), rhs.end());
+    }
     if (lhs.size() != rhs.size())
         return false;
     for (int i = 0; i < lhs.size(); i++)
@@ -16,8 +19,7 @@ bool isArrayEqual(vector<T>& lhs, vector<T>& rhs)
     return true;
 }
 
-template<typename T>
-bool contains(vector<vector<T>>& vec, vector<T>& item)
+template<typename T> bool contains(vector<vector<T>>& vec, vector<T>& item)
 {
     for (int i = 0; i < vec.size(); i++)
     {
