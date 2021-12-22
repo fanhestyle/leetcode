@@ -40,13 +40,22 @@ int main()
     }
 
     {
-        tickets = {{"JFK", "SFO"},
-                   {"JFK", "ATL"},
-                   {"SFO", "ATL"},
-                   {"ATL", "JFK"},
-                   {"ATL", "SFO"}};
+        tickets = {{"JFK","KUL"},{"JFK","NRT"},{"NRT","JFK"}};
 
-        expected = {"JFK", "ATL", "JFK", "SFO", "ATL", "SFO"};
+        expected = {"JFK","NRT","JFK","KUL"};
+
+        result = solution.findItinerary(tickets);
+        assert(isArrayEqual<std::string>(expected, result));
+    }
+
+
+    {
+        tickets = {{"EZE", "AXA"}, {"TIA", "ANU"}, {"ANU", "JFK"},
+                   {"JFK", "ANU"}, {"ANU", "EZE"}, {"TIA", "ANU"},
+                   {"AXA", "TIA"}, {"TIA", "JFK"}, {"ANU", "TIA"},
+                   {"JFK", "TIA"}};
+
+        expected = {"JFK","ANU","EZE","AXA","TIA","ANU","JFK","TIA","ANU","TIA","JFK"};
 
         result = solution.findItinerary(tickets);
         assert(isArrayEqual<std::string>(expected, result));

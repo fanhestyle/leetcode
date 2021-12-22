@@ -6,69 +6,78 @@ class Solution
 public:
     vector<string> findItinerary(vector<vector<string>>& tickets)
     {
-        unordered_map<string, unordered_set<string>> airportHash;
-        buildHash(tickets, airportHash);
+        unordered_map<string, std::map<string, int>> hash;
+        buildHash(tickets, hash);
 
-        vector<string> result = {"Z"};
         vector<string> track = {"JFK"};
-        dfs(result, airportHash, track, tickets.size() + 1);
-        return result;
+        dfs(hash, track, tickets.size());
+        return track;
     }
 
-    int compareTwoString(vector<string>& lhs, vector<string>& rhs)
-    {
-        for (int i = 0; i < lhs.size(); i++)
-        {
-            if (lhs.at(i) > rhs.at(i))
-                return 1;
-            else if (lhs.at(i) < rhs.at(i))
-                return -1;
-        }
-        return lhs.size() - rhs.size();
-    }
-
-    void dfs(vector<string>& result,
-             unordered_map<string, unordered_set<string>>& hash,
+    bool dfs(unordered_map<string, map<string, int>>& hash,
              vector<string>& track, int N)
     {
-        if (track.size() == N)
+        if (track.size() == N + 1)
         {
-            if (compareTwoString(track, result) < 0)
-            {
-                result = track;
-                return;
-            }
+            return true;
         }
 
-        if (track.size() > N)
+        map<string, int>& nextStation = hash[track.back()];
+        for (auto it = nextStation.begin(); it != nextStation.end(); it++)
         {
-            return;
-        }
-
-        unordered_set<string> nextStation = hash[track.back()];
-
-        while (!nextStation.empty())
-        {
-            if (nextStation.size() > 0)
+            if (it->second > 0)
             {
-                string curString = *(nextStation.begin());
-                track.push_back(curString);
-                nextStation.erase(curString);
-                dfs(result, hash, track, N);
+                track.push_back(it->first);
+                it->second --;
+                if (dfs(hash, track, N))
+                    return true;
                 track.pop_back();
-                nextStation.insert(curString);
+                it->second ++;
             }
         }
+        return false;
     }
 
     void buildHash(vector<vector<string>>& tickets,
-                   unordered_map<string, unordered_set<string>>& hashTable)
+                   unordered_map<string, std::map<string, int>>& targets)
     {
-        for (int i = 0; i < tickets.size(); i++)
+        for (const vector<string>& vec : tickets)
         {
-            string key = tickets.at(i).at(0);
-            string value = tickets.at(i).at(1);
-            hashTable[key].insert(value);
+            targets[vec[0]][vec[1]]++; // 记录映射关系
         }
     }
 };
+
+/*
+class Solution {
+private:
+// unordered_map<出发机场, map<到达机场, 航班次数>> targets
+unordered_map<string, map<string, int>> targets;
+bool backtracking(int ticketNum, vector<string>& result) {
+    if (result.size() == ticketNum + 1) {
+        return true;
+    }
+    for (pair<const string, int>& target : targets[result[result.size() - 1]]) {
+        if (target.second > 0 ) { // 记录到达机场是否飞过了
+            result.push_back(target.first);
+            target.second--;
+            if (backtracking(ticketNum, result)) return true;
+            result.pop_back();
+            target.second++;
+        }
+    }
+    return false;
+}
+public:
+    vector<string> findItinerary(vector<vector<string>>& tickets) {
+        targets.clear();
+        vector<string> result;
+        for (const vector<string>& vec : tickets) {
+            targets[vec[0]][vec[1]]++; // 记录映射关系
+        }
+        result.push_back("JFK"); // 起始机场
+        backtracking(tickets.size(), result);
+        return result;
+    }
+};
+*/
