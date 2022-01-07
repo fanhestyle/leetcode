@@ -19,33 +19,31 @@ bool isArrayEqual(vector<T>& lhs, vector<T>& rhs, bool reorder = false)
     return true;
 }
 
-template<typename T>
-bool contains(vector<vector<T>>& vec, vector<T>& item, bool reorder = false)
+template<typename T> bool contains(vector<vector<T>>& vec, vector<T>& item)
 {
     for (int i = 0; i < vec.size(); i++)
     {
-        if (isArrayEqual(vec.at(i), item, reorder))
+        if (isArrayEqual(vec.at(i), item))
             return true;
     }
     return false;
 }
 
 template<typename T>
-bool isEqual(vector<vector<T>>& lhs, vector<vector<T>>& rhs,
-             bool reorder = false)
+bool isEqual(vector<vector<T>>& lhs, vector<vector<T>>& rhs)
 {
     if (lhs.size() != rhs.size())
         return false;
 
     for (int j = 0; j < rhs.size(); j++)
     {
-        if (!contains(lhs, rhs.at(j), reorder))
+        if (!contains(lhs, rhs.at(j)))
             return false;
     }
 
     for (int i = 0; i < lhs.size(); i++)
     {
-        if (!contains(rhs, lhs.at(i), reorder))
+        if (!contains(rhs, lhs.at(i)))
             return false;
     }
 
