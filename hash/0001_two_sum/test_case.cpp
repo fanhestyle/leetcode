@@ -1,6 +1,7 @@
 //#include "two_sum_bf.hpp"
 //#include "two_sum_hash.hpp"
 #include "two_sum_web_1.hpp"
+//#include "two_sum_slide.hpp" //由于返回的是索引，因此不能排序去做，如果返回值是可以用快慢指针排序去解答的
 
 int main(int argc, char **argv) {
   // test-case-1
