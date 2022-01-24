@@ -1,4 +1,6 @@
-#include "s1.hpp"
+//#include "s1.hpp"
+//#include "s2.hpp"
+#include "s3.hpp"
 
 // bool isSymmetric(TreeNode* root)
 
