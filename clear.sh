@@ -1,4 +1,4 @@
-for f in $(find ./ -name 'a.out' -or -name 'test_case'); do rm $f; done
+for f in $(find ./ -name 'a.out' -or -name 'test_case' -or -name 'test'); do rm $f; done
 
 # function read_dir(){
 #     for file in `ls $1`       #注意此处这是两个反引号，表示运行系统命令
