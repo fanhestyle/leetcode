@@ -14,7 +14,7 @@ struct TreeNode
     }
 };
 
-TreeNode* createTree(const std::vector<int>& v)
+TreeNode* createTree(const std::vector<int>& v, int null_value = 0)
 {
     if (v.empty())
         return nullptr;
@@ -22,7 +22,7 @@ TreeNode* createTree(const std::vector<int>& v)
     std::queue<TreeNode*> q1;
     for (int i = 1; i < v.size(); i++)
     {
-        if (v[i] != 0)
+        if (v[i] != null_value)
             q1.push(new TreeNode(v[i]));
         else
             q1.push(nullptr);

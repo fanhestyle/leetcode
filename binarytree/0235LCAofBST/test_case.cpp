@@ -1,9 +1,9 @@
-//#include "s1.hpp"
-#include "s2.hpp"
-
-// TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q)
+#include "s1.hpp"
+//#include "s2.hpp"
 
 #define null 0
+
+// TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q)
 
 int main()
 {
@@ -12,15 +12,15 @@ int main()
     TreeNode *root, *p, *q, *r, *e;
 
     {
-        t = {3,5,1,6,2,9,8,null,null,7,4};
-        pt = {5};
-        qt = {1};
-        et = {3};
+        t = {6, 2, 8, 10, 4, 7, 9, null, null, 3, 5};
+        pt = {2};
+        qt = {8};
+        et = {6};
         root = createTree(t);
         p = createTree(pt);
         q = createTree(qt);
-        r = s.lowestCommonAncestor(root,p,q);
         e = createTree(et);
+        r = s.lowestCommonAncestor(root, p, q);
         assert((r->val == e->val));
     }
 
