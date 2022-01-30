@@ -11,7 +11,7 @@ public:
         if (nums.size() == 1)
             return 1;
 
-        bool checkFlag;
+        bool nextFlag;
         int i = 0, j = 1;
         int cnt = 0;
 
@@ -20,7 +20,7 @@ public:
             if (nums[i] < nums[j])
             {
                 cnt = 1;
-                checkFlag = false;
+                nextFlag = false;
                 i = j;
                 j++;
                 break;
@@ -30,7 +30,7 @@ public:
                 cnt = 1;
                 i = j;
                 j++;
-                checkFlag = true;
+                nextFlag = true;
                 break;
             }
             else
@@ -41,21 +41,26 @@ public:
 
         while (j < nums.size())
         {
-            
+            if (nextFlag == true) //下一个比较项要求 nums[i] < nums[j]
+            {
+                if (nums[i] < nums[j])
+                {
+                    cnt++;
+                    nextFlag = !nextFlag;
+                }
+            }
+            else //下一个比较项要求 nums[i] > nums[j]
+            {
+                if (nums[i] > nums[j])
+                {
+                    cnt++;
+                    nextFlag = !nextFlag;
+                }
+            }
+            i = j;
+            j++;
         }
 
         return cnt + 1;
-    }
-
-    bool isValid(int i, int j, bool checkStatus)
-    {
-        if (checkStatus)
-        {
-            return i < j;
-        }
-        else
-        {
-            return i > j;
-        }
     }
 };
