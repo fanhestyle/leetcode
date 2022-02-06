@@ -5,21 +5,27 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// brutal force
+
 class Solution
 {
 public:
     int rob(vector<int>& nums)
     {
         int len = nums.size();
-        int one = 0, two = 0;
-        for (int i = 0; i < len; i++)
+        if (len == 0)
+            return 0;
+            
+        vector<int> dp(len, 0);
+
+        dp[0] = nums[0];
+        dp[1] = max(nums[0], nums[1]);
+
+        for (int i = 2; i < len; i++)
         {
-            if (i % 2 == 0)
-                one += nums[i];
-            else
-                two += nums[i];
+            dp[i] = max(dp[i - 1], dp[i - 2] + nums[i]);
         }
 
-        return one > two ? one : two;
+        return dp[len - 1];
     }
 };
