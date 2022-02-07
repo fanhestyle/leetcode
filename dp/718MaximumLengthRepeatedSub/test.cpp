@@ -1,4 +1,5 @@
-#include "s1.hpp"
+//#include "s1.hpp"
+#include "s2.hpp"
 
 // int findLength(vector<int>& nums1, vector<int>& nums2) {
 
@@ -20,6 +21,14 @@ int main()
         nums1 = {0, 0, 0, 0, 0};
         nums2 = {0, 0, 0, 0, 0};
         e = 5;
+        r = solution.findLength(nums1, nums2);
+        ASSERT_EX(r == e, cerr << "e: " << e << ",r: " << r << endl);
+    }
+
+    {
+        nums1 = {0, 1, 1, 1, 1};
+        nums2 = {1, 0, 1, 0, 1};
+        e = 2;
         r = solution.findLength(nums1, nums2);
         ASSERT_EX(r == e, cerr << "e: " << e << ",r: " << r << endl);
     }
