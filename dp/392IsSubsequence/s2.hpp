@@ -5,30 +5,31 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// dynamic programming
+
 class Solution
 {
 public:
-    int findLength(vector<int>& nums1, vector<int>& nums2)
+    bool isSubsequence(string s, string t)
     {
-        int len1 = nums1.size();
-        int len2 = nums2.size();
-
-        int maxsamelen = 0;
+        int len1 = s.length();
+        int len2 = t.length();
 
         vector<vector<int>> dp(len1 + 1, vector<int>(len2 + 1, 0));
+
         for (int i = 1; i <= len1; i++)
         {
             for (int j = 1; j <= len2; j++)
             {
-                if (nums1[i-1] == nums2[j-1])
+                if (s[i - 1] == t[j - 1])
                 {
-                    dp[i][j] = dp[i - 1][j - 1] + 1;
-                    if (maxsamelen < dp[i][j])
-                        maxsamelen = dp[i][j];
+                    dp[i][j] = max(dp[i][j], dp[i - 1][j - 1] + 1);
                 }
+                else
+                    dp[i][j] = max(dp[i][j], dp[i][j - 1]);
             }
         }
 
-        return maxsamelen;
+        return dp[len1][len2] == s.length();
     }
 };
