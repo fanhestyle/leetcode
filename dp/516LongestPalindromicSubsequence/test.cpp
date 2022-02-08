@@ -1,7 +1,7 @@
 //#include "s1.hpp"
 #include "s2.hpp"
 
-// int countSubstrings(string s) {}
+// int longestPalindromeSubseq(string s) {
 
 int main()
 {
@@ -10,16 +10,16 @@ int main()
     int r, e;
 
     {
-        s = "abc";
-        e = 3;
-        r = solution.countSubstrings(s);
+        s = "bbbab";
+        e = 4;
+        r = solution.longestPalindromeSubseq(s);
         ASSERT_EX(r == e, cerr << "e: " << e << ",r: " << r << endl);
     }
 
     {
-        s = "aaa";
-        e = 6;
-        r = solution.countSubstrings(s);
+        s = "cbbd";
+        e = 2;
+        r = solution.longestPalindromeSubseq(s);
         ASSERT_EX(r == e, cerr << "e: " << e << ",r: " << r << endl);
     }
 
