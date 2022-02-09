@@ -1,5 +1,5 @@
-#include "s1.hpp"
-//#include "s2.hpp"
+//#include "s1.hpp"
+#include "s2.hpp"
 // vector<int> dailyTemperatures(vector<int>& temperatures) {
 
 int main()
